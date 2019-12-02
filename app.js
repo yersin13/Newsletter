@@ -44,9 +44,14 @@ var jsonData = JSON.stringify(data);
     
     request(options,function(error, response, body){
        if (error) {
-           console.log(error);
-       }  else {
-           console.log(response.statusCode);
+           res.sendFile(__dirname + "/failure.html");
+       }  else{
+          if  (response.statusCode === 200){
+               res.sendFile(__dirname + "/success.html");
+               
+       } else{
+           res.send("There was and error with signing up, please try again!");
+       }
        }
     });
 });
